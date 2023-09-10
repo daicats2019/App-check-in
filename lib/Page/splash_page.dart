@@ -27,7 +27,7 @@ class _splashPageState extends State<splashPage> {
         children: [
           InkWell(
               onTap: (){
-                Navigator.pushNamed(context, RouteNamePage.mainPage);
+                Navigator.pushNamed(context, RouteNamePage.splashPage);
               },
               child: Image.asset('assets/images/spectrum_logo.png')),
         ],

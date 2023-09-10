@@ -6,13 +6,11 @@ class NormalTextfeild extends StatefulWidget {
   final ValueChanged<String?>? validate;
   final  TextEditingController? controler;
   final String? title;
-  final Icon? icon;
   final bool isShow;
 
   NormalTextfeild({
     super.key,
     required this.title,
-    required this.icon,
     required this.isShow,
      this.onchanged,
      this.controler,
@@ -54,11 +52,6 @@ class _NormalTextfeildState extends State<NormalTextfeild> {
         obscureText: widget.isShow,
         decoration:  InputDecoration(
           labelText: widget.title,
-          prefixIcon: Align(
-            widthFactor: 1.0,
-            heightFactor: 1.0,
-            child: widget.icon ,
-          ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
                 width: 3, color: Colors.grey), //<-- SEE HERE

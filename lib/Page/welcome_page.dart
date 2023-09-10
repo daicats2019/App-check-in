@@ -34,10 +34,13 @@ class _WelcomepageState extends State<Welcomepage> {
                       color: const Color(0xff73AB6B),
                       textColor: const Color(0xffffffff), icon: null,),
                   const SizedBox(height: 10,),
-                  const AppButton(
+                   AppButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteNamePage.loginpage);
+                    },
                       icon: null,
                       title: 'Login',
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       textColor: Colors.black),
                   TextButton(onPressed: () {},
                       child: const Text('Forgot Password?',

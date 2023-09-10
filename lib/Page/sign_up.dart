@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../route/routname.dart';
 import '../untils/color.dart';
+import '../user_auth/firebase_auth_service.dart';
 import '../widget/button_login.dart';
 
 class SingUpPage extends StatefulWidget {
@@ -12,6 +14,11 @@ class SingUpPage extends StatefulWidget {
 }
 
 class _SingUpPageState extends State<SingUpPage> {
+
+
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
   final controllerName = TextEditingController();
   final controllerEmail = TextEditingController();
@@ -64,11 +71,11 @@ class _SingUpPageState extends State<SingUpPage> {
                             if (value == null || value.isEmpty) {
                               return 'Full name can\'t be empty';
                             }
-                            RegExp fullNameExp =
-                                RegExp('^[A-Z][a-z]+\s[a-zA-Z\s\.]+');
-                            if (!fullNameExp!.hasMatch(value)) {
-                              return 'Your full name is invalid';
-                            }
+                            // RegExp fullNameExp =
+                            //     RegExp('^[A-Z][a-z]+\s[a-zA-Z\s\.]+');
+                            // if (!fullNameExp!.hasMatch(value)) {
+                            //   return 'Your full name is invalid';
+                            // }
                           },
                           onSaved: (value) {
                             print(value);
@@ -162,59 +169,7 @@ class _SingUpPageState extends State<SingUpPage> {
                         height: 20,
                       ),
                       ElevatedButton(
-                        onPressed: () {
-                          print(
-                              '${controllerName.text} \n ${controllerEmail.text} \n ${controllerPassword.text}');
-                          if (_keyform.currentState!.validate()) {
-                            _keyform.currentState!.save();
-                            showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                      backgroundColor: AppColors.white,
-                                      actions: [  const SizedBox(
-                                        height: 10,
-                                      ),
-                                        InkWell(
-                                            onTap: (){
-                                              Navigator.pop(context);
-                                            },
-                                            child: Icon(Icons.close,color: Colors.red,)),
-                                        const Padding(
-                                          padding: EdgeInsets.only(top: 10),
-                                          child: Text(
-                                            'Your regiistetion is completed...',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: 18,
-                                                color: AppColors.black),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Center(
-                                            child: Image.asset(
-                                                'assets/images/check.png')),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        const Center(
-                                          child: Text(
-                                            'Wait for verification! After verify you will get a email.',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: 18,
-                                                color: AppColors.black),
-                                          ),
-                                        )
-                                      ],
-                                    ));
-
-                            Future.delayed(const Duration(seconds: 1), () {
-                              Navigator.pushNamed(context, RouteNamePage.welComepage);
-                            });
-                          }
-                        },
+                        onPressed:  _signUp,
                         child: Container(
                           width: 360,
                           height: 60,
@@ -280,5 +235,77 @@ class _SingUpPageState extends State<SingUpPage> {
         ),
       ),
     );
+    
   }
+
+ void _signUp() async {
+      String username = controllerName.text;
+      String email  = controllerEmail.text;
+      String password = controllerPassword.text;
+
+
+
+        print(
+            '${controllerName.text} \n ${controllerEmail.text} \n ${controllerPassword.text}');
+        if (_keyform.currentState!.validate()) {
+          _keyform.currentState!.save();
+          User? user = await _auth.signUpWithEmailAndPassword(email, password);
+print('oOKOKOKOK');
+          if(user != null) {
+            print('User is succeede full');
+             // showDialog(
+             //    context: context,
+             //    builder: (context) => AlertDialog(
+             //      backgroundColor: AppColors.white,
+             //      actions: [  const SizedBox(
+             //        height: 10,
+             //      ),
+             //        InkWell(
+             //            onTap: (){
+             //              Navigator.pop(context);
+             //            },
+             //            child: Icon(Icons.close,color: Colors.red,)),
+             //        const Padding(
+             //          padding: EdgeInsets.only(top: 10),
+             //          child: Text(
+             //            'Your regiistetion is completed...',
+             //            style: TextStyle(
+             //                fontWeight: FontWeight.w300,
+             //                fontSize: 18,
+             //                color: AppColors.black),
+             //          ),
+             //        ),
+             //        const SizedBox(
+             //          height: 20,
+             //        ),
+             //        Center(
+             //            child: Image.asset(
+             //                'assets/images/check.png')),
+             //        const SizedBox(
+             //          height: 20,
+             //        ),
+             //        const Center(
+             //          child: Text(
+             //            'Wait for verification! After verify you will get a email.',
+             //            style: TextStyle(
+             //                fontWeight: FontWeight.w300,
+             //                fontSize: 18,
+             //                color: AppColors.black),
+             //          ),
+             //        )
+             //      ],
+             //    ));
+
+            // Future.delayed(const Duration(seconds: 1), () {
+            //   Navigator.pushNamed(context, RouteNamePage.loginpage);
+            // });
+
+            Navigator.pushNamed(context, RouteNamePage.signOutPAge);
+          } else {
+            print('Some error');
+          }
+        }
+
+  }
+ 
 }
