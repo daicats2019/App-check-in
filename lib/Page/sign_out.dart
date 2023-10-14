@@ -16,8 +16,7 @@ class SignOutPage extends StatelessWidget {
             color: Colors.blue,
             textColor: Colors.white,
             icon: null,
-            onPressed
-                : () {
+            onPressed: () {
           FirebaseAuth.instance.signOut();
           Navigator.pushNamed(context, RouteNamePage.loginpage);
         }),

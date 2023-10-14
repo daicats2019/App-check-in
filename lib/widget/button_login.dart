@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final String title;
   final Color color;
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final Color textColor;
   final Image? icon;
 
@@ -20,9 +20,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:
-      onPressed
-      ,
+      onTap: onPressed,
       child: Container(
         width: 360,
         height: 60,

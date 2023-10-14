@@ -1,18 +1,25 @@
-import 'package:app_check_in/route/routname.dart';
+import 'package:app_check_in/provider/google_sign_in.dart';
+import 'package:app_check_in/route/route_managermnet.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Page/home_page.dart';
-import 'Page/login_page.dart';
-import 'Page/sign_out.dart';
-import 'Page/sign_up.dart';
-import 'Page/welcome_page.dart';
 import 'Page/splash_page.dart';
 //firebase
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'model/timeData.dart';
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
+  await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(timaDataAdapter());
   runApp(const MyApp());
 }
 
@@ -22,49 +29,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
+    return  ChangeNotifierProvider(
+      create: (BuildContext context) => GoogleSignInProvider(),
+      child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
 
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: const splashPage(),
+            onGenerateRoute: routeManagement,
+
+
           ),
-          home: const splashPage(),
-          onGenerateRoute: (setting) {
-            switch (setting.name){
-              case RouteNamePage.splashPage:
-                {
-                  return MaterialPageRoute(builder: (context) => splashPage());
-                }
-              case RouteNamePage.welComepage:
-                {
-                  return MaterialPageRoute(builder: (context) => Welcomepage());
-                }
-              case RouteNamePage.signUpPage:
-                {
-                  return MaterialPageRoute(builder: (context) => SingUpPage());
-                }
-              case RouteNamePage.loginpage:
-                {
-                  return MaterialPageRoute(builder: (context) => LoginPage());
-                }
-              case RouteNamePage.signOutPAge:
-                {
-                  return MaterialPageRoute(builder: (context) => SignOutPage());
-                }
-              case RouteNamePage.homePage:
-                {
-                  return MaterialPageRoute(builder: (context) => Homepage());
-                }
-            }
-          },
-        );
-      },
-
     );
+      }
+
+
   }
-}
+
