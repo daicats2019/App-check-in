@@ -1,5 +1,5 @@
-import 'package:app_check_in/Page/widget/drawer_header.dart';
-import 'package:app_check_in/Page/widget/drawerbody.dart';
+import 'package:app_check_in/pages/widget/drawer_header.dart';
+import 'package:app_check_in/pages/widget/drawerbody.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

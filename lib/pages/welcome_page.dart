@@ -1,3 +1,4 @@
+import 'package:app_check_in/untils/media_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _WelcomepageState extends State<Welcomepage> {
         child: Column(
 
           children: [
-            Image.asset('assets/images/spectrum_logo.png'),
+            Image.asset(MediaManager.logo),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../untils/media_manager.dart';
+
   class DrawerHead extends StatefulWidget {
   const DrawerHead({super.key});
 
@@ -18,7 +20,7 @@ class _DrawerHeadState extends State<DrawerHead> {
       child: Column(
       children: [
         SizedBox(height: 30,),
-        Image.asset('assets/images/avater.png'),
+        Image.asset(MediaManager.icAvatar),
         SizedBox(height: 10,),
         const Text(
             "Hi! Kabir",

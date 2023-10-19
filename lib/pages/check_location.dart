@@ -1,5 +1,5 @@
-import 'package:app_check_in/Page/widget/drawer_header.dart';
-import 'package:app_check_in/Page/widget/drawerbody.dart';
+
+import 'package:app_check_in/untils/media_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import '../route/routname.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../model/locations.dart' as locations;
+import 'widget/drawer_header.dart';
+import 'widget/drawerbody.dart';
 
 class CheckLocation extends StatefulWidget {
   const CheckLocation({Key? key}) : super(key: key);
@@ -128,7 +130,7 @@ class _CheckLocationState extends State<CheckLocation> {
               children: [
                 DrawerHead(),
                  DrawerButtonBody(
-                  imaged: 'assets/images/subtract.png',
+                  imaged: MediaManager.icSubtract,
                   title: 'Home',
                 ),
                  DrawerButtonBody(

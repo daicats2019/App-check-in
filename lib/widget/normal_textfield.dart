@@ -1,29 +1,26 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NormalTextfeild extends StatefulWidget {
   final ValueChanged<String>? onchanged;
   final ValueChanged<String?>? validate;
-  final  TextEditingController? controler;
+  final TextEditingController? controler;
   final String? title;
   final bool isShow;
 
-  NormalTextfeild({
+  const NormalTextfeild({
     super.key,
     required this.title,
     required this.isShow,
-     this.onchanged,
-     this.controler,
+    this.onchanged,
+    this.controler,
     this.validate,
   });
-
 
   @override
   State<NormalTextfeild> createState() => _NormalTextfeildState();
 }
 
 class _NormalTextfeildState extends State<NormalTextfeild> {
-
   late final TextEditingController _controler;
 
   @override
@@ -32,6 +29,7 @@ class _NormalTextfeildState extends State<NormalTextfeild> {
     super.initState();
   }
 
+  @override
   void dispose() {
     _controler.dispose();
     super.dispose();
@@ -42,7 +40,7 @@ class _NormalTextfeildState extends State<NormalTextfeild> {
     return SizedBox(
       width: 340,
       child: TextFormField(
-        validator:(value) {
+        validator: (value) {
           widget.validate;
         },
         onChanged: (value) {
@@ -50,13 +48,11 @@ class _NormalTextfeildState extends State<NormalTextfeild> {
         },
         controller: _controler,
         obscureText: widget.isShow,
-        decoration:  InputDecoration(
+        decoration: InputDecoration(
           labelText: widget.title,
           enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-                width: 3, color: Colors.grey), //<-- SEE HERE
+            borderSide: BorderSide(width: 3, color: Colors.grey), //<-- SEE HERE
           ),
-
         ),
       ),
     );

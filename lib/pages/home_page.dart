@@ -1,7 +1,7 @@
-import 'package:app_check_in/Page/sign_up.dart';
-import 'package:app_check_in/Page/widget/drawer_header.dart';
-import 'package:app_check_in/Page/widget/drawerbody.dart';
-import 'package:app_check_in/Page/widget/menudrawer.dart';
+import 'package:app_check_in/pages/sign_up.dart';
+import 'package:app_check_in/pages/widget/drawer_header.dart';
+import 'package:app_check_in/pages/widget/drawerbody.dart';
+import 'package:app_check_in/pages/widget/menudrawer.dart';
 import 'package:app_check_in/model/timeData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../route/routname.dart';
 import '../untils/app_database.dart';
-import 'login_page.dart';
+import 'login_page/login_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});

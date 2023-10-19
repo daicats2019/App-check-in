@@ -1,57 +1,53 @@
 
 import 'package:app_check_in/route/routname.dart';
 import 'package:flutter/material.dart';
-import '../Page/check_location.dart';
-import '../Page/home_checkin.dart';
-import '../Page/home_page.dart';
-import '../Page/login_page.dart';
-import '../Page/select_location.dart';
-import '../Page/sign_out.dart';
-import '../Page/sign_up.dart';
-import '../Page/splash_page.dart';
-import '../Page/welcome_page.dart';
+import '../pages/check_location.dart';
+import '../pages/home_checkin.dart';
+import '../pages/home_page.dart';
+import '../pages/login_page/login_page.dart';
+import '../pages/select_location.dart';
+import '../pages/sign_out.dart';
+import '../pages/sign_up.dart';
+import '../pages/splash_page.dart';
+import '../pages/welcome_page.dart';
 
  var routeManagement = (setting){
     switch (setting.name){
       case RouteNamePage.splashPage:
         {
-          return MaterialPageRoute(builder: (context) => splashPage());
+          return MaterialPageRoute(builder: (context) => const SplashPage());
         }
-      case RouteNamePage.welComepage:
+      case RouteNamePage.welcomePage:
         {
-          return MaterialPageRoute(builder: (context) => Welcomepage());
+          return MaterialPageRoute(builder: (context) => const Welcomepage());
         }
       case RouteNamePage.signUpPage:
         {
-          return MaterialPageRoute(builder: (context) => SingUpPage());
+          return MaterialPageRoute(builder: (context) => const SingUpPage());
         }
       case RouteNamePage.loginpage:
         {
-          return MaterialPageRoute(builder: (context) => LoginPage());
+          return MaterialPageRoute(builder: (context) => const LoginPage());
         }
       case RouteNamePage.signOutPAge:
         {
-          return MaterialPageRoute(builder: (context) => SignOutPage());
+          return MaterialPageRoute(builder: (context) => const SignOutPage());
         }
       case RouteNamePage.homePage:
         {
-          return MaterialPageRoute(builder: (context) => Homepage());
+          return MaterialPageRoute(builder: (context) => const Homepage());
         }
       case RouteNamePage.checklocation:
         {
-          return MaterialPageRoute(builder: (context) => CheckLocation());
+          return MaterialPageRoute(builder: (context) => const CheckLocation());
         }
       case RouteNamePage.selectLocation:
         {
-          return MaterialPageRoute(builder: (context) => SelectLocation());
-        }
-      case RouteNamePage.selectLocation:
-        {
-          return MaterialPageRoute(builder: (context) => SelectLocation());
+          return MaterialPageRoute(builder: (context) => const SelectLocation());
         }
       case RouteNamePage.homeCheckIn:
         {
-          return MaterialPageRoute(builder: (context) => Homecheck());
+          return MaterialPageRoute(builder: (context) => const Homecheck());
         }
     }};
 

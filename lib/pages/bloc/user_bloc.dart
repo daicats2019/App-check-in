@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app_check_in/model/user_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -19,6 +17,4 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     var dataFromServer = await UserService.getDataUserServer();
     emit(UserDataChangedSuccess(dataFromServer));
   }
-
-
 }
