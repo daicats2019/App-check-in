@@ -6,17 +6,17 @@ import '../model/user_model.dart';
 
 class UserService {
   final Uri uri = Uri (
-      scheme: 'https', host:'64a6b44d096b3f0fcc805ffd.mockapi.io'
+      scheme: 'https', host:'bluemployees.online'
   );
 
   static Future<List<UserModel>> getDataUserServer() async {
     var url = Uri(
       scheme: 'https',
-      host: '64a6b44d096b3f0fcc805ffd.mockapi.io',
-      path: '/check_in_app',
+      host: 'bluemployees.online',
+      path: '/api/v1/users',
     );
     var respnse = await http.get(url);
-
+    print("${respnse}  okokokokko");
 
     var listMap = jsonDecode(respnse.body) as List<dynamic>;
     List<UserModel> result = listMap.map((e) => UserModel.fromJson(e),).toList();

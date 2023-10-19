@@ -27,20 +27,20 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final FirebaseAuthService _auth = FirebaseAuthService();
 
-  //  Future<List<UserModel>> getDataUserServer() async {
-  //    await Future.delayed(Duration(seconds: 5));
-  //   var url = Uri(
-  //     scheme: 'https',
-  //     host: '64a6b44d096b3f0fcc805ffd.mockapi.io',
-  //     path: '/check_in_app',
-  //   );
-  //   var respnse = await http.get(url);
-  //
-  //     print('${respnse.body} OKOKOKOK`');
-  //   var listMap = jsonDecode(respnse.body) as List<dynamic>;
-  //   List<UserModel> result = listMap.map((e) => UserModel.fromJson(e),).toList();
-  //   return result;
-  // }
+   Future<List<UserModel>> getDataUserServerA() async {
+     await Future.delayed(Duration(seconds: 5));
+    var url = Uri(
+      scheme: 'https',
+      host: '64a6b44d096b3f0fcc805ffd.mockapi.io',
+      path: '/check_in_app',
+    );
+    var respnse = await http.get(url);
+
+      print('${respnse.body} OKOKOKOK`');
+    var listMap = jsonDecode(respnse.body) as List<dynamic>;
+    List<UserModel> result = listMap.map((e) => UserModel.fromJson(e),).toList();
+    return result;
+  }
 
 
   @override
@@ -62,9 +62,10 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: FutureBuilder(
-            future: UserService.getDataUserServer(),
+            future: getDataUserServerA(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+                print('${snapshot}');
                 return Column(
                   children: [
                     const Center(
