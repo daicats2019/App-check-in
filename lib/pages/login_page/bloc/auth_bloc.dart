@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ActivityAcrionEvent>(
           (event, emit) async {
         //xử lý logic cho event AuthLogin
-        final result = await ActivityActionService.checkActivityAction(event.isCheckIn ,event.action, event.action);
+        final result = await ActivityActionService.checkActivityAction(event.is_check_in ,event.action, event.action);
         //sau khi xử lý logic xong thì phát động một state mới.
         if (result != null) {
           emit(AuthLoginSuccess());

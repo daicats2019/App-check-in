@@ -213,7 +213,9 @@ class _LoginPageState extends State<LoginPage> {
     print('START ActivityTodayEvent');
     context.read<AuthBloc>().add(ActivityTodayEvent(
         token: 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Mjk0OTY5MjMsInVzZXJfaWQiOjEwLCJ1c2VybmFtZSI6InF1b2N2aWV0MTIzQGdtYWlsLmNvbSJ9.yAz2uItTmD5OmBwsbSmZap1LJX43zsW61zKbAf6e7iGxAJ_Oh_6PeSYBOB8fpbrqqpNDmDgVOebvEVdV0fBM8Q'));
-
+    context.read<AuthBloc>().add(ActivityAcrionEvent(
+         is_check_in: true, token: ''));
+    print('START ActivityTodayEvent');
 
   }
 }
