@@ -8,7 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'pages/splash_page.dart';
+import 'pages/splash_page/splash_page.dart';
 import 'model/timeData.dart';
 
 Future<void> main() async {

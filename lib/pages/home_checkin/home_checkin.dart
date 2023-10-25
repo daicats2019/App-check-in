@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../route/routname.dart';
-import '../model/locations.dart' as locations;
+import '../../route/routname.dart';
+import '../../model/locations.dart' as locations;
 
 
 class Homecheck extends StatefulWidget {

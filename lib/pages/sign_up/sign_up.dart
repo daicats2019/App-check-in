@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../route/routname.dart';
-import '../untils/color.dart';
-import '../user_auth/firebase_auth_service.dart';
-import '../widget/button_login.dart';
+import '../../route/routname.dart';
+import '../../untils/color.dart';
+import '../../untils/media_manager.dart';
+import '../../user_auth/firebase_auth_service.dart';
+import '../../widget/button_login.dart';
 
 class SingUpPage extends StatefulWidget {
   const SingUpPage({Key? key}) : super(key: key);
@@ -224,7 +225,7 @@ class _SingUpPageState extends State<SingUpPage> {
                         title: 'Google',
                         color: Colors.white,
                         textColor: Colors.black,
-                        icon: Image.asset('assets/images/icon_google.png'),
+                        icon: Image.asset(MediaManager.icGoogle),
                       )
                     ],
                   ),
@@ -250,7 +251,7 @@ class _SingUpPageState extends State<SingUpPage> {
         if (_keyform.currentState!.validate()) {
           _keyform.currentState!.save();
           User? user = await _auth.signUpWithEmailAndPassword(email, password);
-print('oOKOKOKOK');
+
           if(user != null) {
             print('User is succeede full');
              // showDialog(

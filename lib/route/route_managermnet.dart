@@ -1,14 +1,14 @@
 
 import 'package:app_check_in/route/routname.dart';
 import 'package:flutter/material.dart';
-import '../pages/check_location.dart';
-import '../pages/home_checkin.dart';
-import '../pages/home_page.dart';
+import '../pages/check_location/check_location.dart';
+import '../pages/home_checkin/home_checkin.dart';
+import '../pages/home_page/home_page.dart';
 import '../pages/login_page/login_page.dart';
-import '../pages/select_location.dart';
+import '../pages/select_location/select_location.dart';
 import '../pages/sign_out.dart';
-import '../pages/sign_up.dart';
-import '../pages/splash_page.dart';
+import '../pages/sign_up/sign_up.dart';
+import '../pages/splash_page/splash_page.dart';
 import '../pages/welcome_page.dart';
 
  var routeManagement = (setting){

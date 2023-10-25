@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../route/routname.dart';
-import '../untils/media_manager.dart';
+import '../../route/routname.dart';
+import '../../untils/media_manager.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
