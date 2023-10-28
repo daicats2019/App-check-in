@@ -1,11 +1,22 @@
-import 'package:app_check_in/route/routname.dart';
+import 'package:app_check_in/provider/google_sign_in.dart';
+import 'package:app_check_in/route/route_managermnet.dart';
+//firebase
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Page/form_register.dart';
-import 'Page/welcome_page.dart';
-import 'Page/main_page.dart';
+import 'pages/splash_page/splash_page.dart';
+import 'model/timeData.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
+  await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(timaDataAdapter());
   runApp(const MyApp());
 }
 
@@ -15,31 +26,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const SplashPage(),
+        onGenerateRoute: routeManagement,
       ),
-      home: const splashPage(),
-      onGenerateRoute: (setting) {
-        switch (setting.name){
-          case RouteNamePage.mainPage:
-            {
-              return MaterialPageRoute(builder: (context) => splashPage());
-            }
-          case RouteNamePage.welComepage:
-            {
-              return MaterialPageRoute(builder: (context) => Welcomepage());
-            }
-          case RouteNamePage.signUpPage:
-            {
-              return MaterialPageRoute(builder: (context) => SingUpPage());
-            }
-        }
-      },
     );
   }
 }
