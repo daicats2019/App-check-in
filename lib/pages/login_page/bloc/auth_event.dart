@@ -17,10 +17,10 @@ class ActivityTodayEvent extends AuthEvent{
 }
 
 class ActivityAcrionEvent extends AuthEvent{
-  final String? token;
-  final String? action;
+  final String token;
+  final String action;
   final bool is_check_in;
 
-  ActivityAcrionEvent({this.action,required this.is_check_in, required this.token});
+  ActivityAcrionEvent({required this.action,required this.is_check_in, required this.token});
 }
 

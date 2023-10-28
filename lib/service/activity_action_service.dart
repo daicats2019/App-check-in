@@ -24,7 +24,7 @@ class ActivityActionService {
 
     dio.options.headers = {'Authorization': mockToken};
     response = await dio.put('/api/v1/activities/action',data: {"action": action, "is_check_in": is_check_in});
-    print('DATA RESPONSE checkActivityToday OKOK:  $response');
+    print('DATA RESPONSE checkActivityAction OKOK2:  $response');
     if (response.statusCode == 200 || response.statusCode == 201) {
       // return response.data as String;
       return ActivityModelToday.fromJson(jsonDecode(response.data));

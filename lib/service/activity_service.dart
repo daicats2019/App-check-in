@@ -28,7 +28,6 @@ class ActivityService {
     print('DATA RESPONSE checkActivityToday OKOK:  $response');
     if (response.statusCode == 200 || response.statusCode == 201) {
       // return response.data as String;
-
       return ActivityModelToday.fromJson(jsonDecode(response.data));
     }
     return null;
