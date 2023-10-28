@@ -25,10 +25,16 @@ class ActivityService {
 
     dio.options.headers = {'Authorization': token};
     response = await dio.get('/api/v1/activities/today');
-    print('DATA RESPONSE checkActivityToday OKOK:  $response');
+    print('DATA RESPONSE checkActivityToday OKOK:  ${response.runtimeType}');
+
     if (response.statusCode == 200 || response.statusCode == 201) {
       // return response.data as String;
-      return ActivityModelToday.fromJson(jsonDecode(response.data));
+      var result  = response.data;
+      print('OKOKOK${result.runtimeType}');
+      // var resp = jsonDecode(response.data);
+      // print('OKOKOK123${resp}');
+
+      return ActivityModelToday.fromJson(result);
     }
     return null;
   }
