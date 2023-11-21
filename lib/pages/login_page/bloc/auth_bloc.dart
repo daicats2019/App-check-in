@@ -41,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         //sau khi xử lý logic xong thì phát động một state mới.
         if (result != null) {
+          print('VAVAVA2');
           if (result.status == 'Available') {
             emit(NotCheckIn());
           } else if (result.status == 'CheckedIn') {
@@ -48,11 +49,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           } else if (result.status == 'CheckedOut') {
             emit(CheckedIn(result));
           } else if (result.status == 'CheckedInLate') {
+            print('VAVAVA1');
             emit(CheckedIn(result));
           } else if (result.status == 'CheckedOutEarly') {
             emit(CheckedIn(result));
           }
         } else {
+          print('VAVAVA3');
           emit(NotCheckIn());
         }
       },
