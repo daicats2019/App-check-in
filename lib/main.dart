@@ -1,9 +1,12 @@
+import 'package:app_check_in/pages/home_checkin/bloc/checktime_bloc.dart';
+import 'package:app_check_in/pages/login_page/bloc/auth_bloc.dart';
 import 'package:app_check_in/provider/google_sign_in.dart';
 import 'package:app_check_in/route/route_managermnet.dart';
 //firebase
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,8 +29,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => GoogleSignInProvider(),
+    return BlocProvider<ChecktimeBloc>(
+      create: (BuildContext context) => ChecktimeBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -37,6 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const SplashPage(),
         onGenerateRoute: routeManagement,
+
       ),
     );
   }

@@ -18,5 +18,18 @@ class CheckedIn extends AuthState{
 }
 
 class NotCheckIn extends AuthState {
+}
+
+class CheckInLate extends AuthState {
+  final ActivityModelToday data;
+  CheckInLate(this.data);
+}
+
+class CheckInEarly extends AuthState {
+  final ActivityModelToday data;
+  CheckInEarly(this.data);
+}
+
+class CheckInSucces extends AuthState {
 
 }

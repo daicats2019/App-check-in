@@ -18,9 +18,8 @@ class ActivityTodayEvent extends AuthEvent{
 
 class ActivityAcrionEvent extends AuthEvent{
   final String token;
-  final String action;
-  final bool is_check_in;
+  final bool isCheckIn;
 
-  ActivityAcrionEvent({required this.action,required this.is_check_in, required this.token});
+  ActivityAcrionEvent({required this.token, required this.isCheckIn});
 }
 

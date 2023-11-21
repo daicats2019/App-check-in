@@ -38,6 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         //xử lý logic cho event AuthLogin
         final result = await ActivityService.checkActivityToday(event.token);
           print('${result} OKKOKOKOKOKOK');
+
         //sau khi xử lý logic xong thì phát động một state mới.
         if (result != null) {
           if (result.status == 'Available') {
@@ -58,5 +59,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
 
+    on<ActivityAcrionEvent>(
+          (event, emit) async {
+        //xử lý logic cho event AuthLogin
+        final result = await ActivityActionService.checkActivityAction(event.isCheckIn, event.token);
+
+        //sau khi xử lý logic xong thì phát động một state mới.
+        if (result != null) {
+           emit(CheckInSucces());
+        } else {
+          emit(NotCheckIn());
+        }
+      },
+    );
   }
 }

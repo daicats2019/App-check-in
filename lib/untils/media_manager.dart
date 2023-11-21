@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MediaManager {
   static const String icSubtract = 'assets/icons/ic_subtract_test.png';
-  static const String icAvatar = 'assets/icons/ic_avatar.png';
+  static const String icAvatar = 'assets/icons/ic_avater.png';
   static const String icGoogle = 'assets/icons/ic_google.png';
   static const String isBag = 'assets/icons/ic_bag.png';
 

@@ -2,6 +2,7 @@ import 'package:app_check_in/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../route/routname.dart';
 import '../../untils/media_manager.dart';
@@ -29,23 +30,35 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void initState(){
+
+    super.initState();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<AuthBloc>(
         create: (context) => AuthBloc(),
-        child: SafeArea(child: Builder(builder: (context) {
+        child: SafeArea(
+            child: Builder(builder: (context) {
           return BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               // TODO: implement listener
+              final SharedPreferences prefs = await SharedPreferences.getInstance();
+
 
               if (state is AuthLoginSuccess) {
+                await prefs.setString('token',  state.token);
                 context
                     .read<AuthBloc>()
                     .add(ActivityTodayEvent(token: state.token));
                 return;
               }
               if (state is CheckedIn) {
-                Navigator.pushNamed(context, RouteNamePage.homeCheckIn);
+                Navigator.pushNamed(context, RouteNamePage.homePage);
                 return;
               }
               if (state is NotCheckIn) {
@@ -213,16 +226,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _signIn(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var action = prefs.getString('token') ?? '';
+    print('${action} KIKIKIKI1');
     print('START LOGIN EVENT');
     //TODO: Validate the form before call sign-in event
-    // if(_keyform.currentState!.validate()) {
-    //
-    // } else {
-    //   print('Some error');
-    // }
+    if(_keyform.currentState!.validate()) {
+      context.read<AuthBloc>().add(AuthLoginEvent(
+          userName: _emailController.text, password: _passwordController.text));
+      print('START ActivityTodayEvent');
+    } else {
+      print('Some error');
+    }
 
-    context.read<AuthBloc>().add(AuthLoginEvent(
-        userName: _emailController.text, password: _passwordController.text));
-    print('START ActivityTodayEvent');
+
   }
 }
